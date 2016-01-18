@@ -1,4 +1,4 @@
-package model;
+package com.ss.crawler.model;
 
 /**
  * Created by ss on 2016/1/17.

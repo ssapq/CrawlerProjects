@@ -1,10 +1,12 @@
 package com.ss.crawler.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ss on 2016/1/17.
  * 采集任务
  */
-public class Task {
+public class Task implements Serializable{
 
     private Long id;
     private Integer type;

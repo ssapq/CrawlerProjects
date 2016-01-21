@@ -5,12 +5,12 @@ import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Tuple;
+import com.ss.crawler.model.CrawlerRequest;
+import com.ss.crawler.model.CrawlerResponse;
 import com.ss.crawler.model.Task;
 import com.ss.crawler.service.HttpService;
-import com.ss.crawler.service.MqService;
 import com.ss.crawler.service.impl.HttpServiceImpl;
-import com.ss.crawler.service.impl.MqServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -33,13 +33,25 @@ public class DownloadBolt implements IRichBolt {
             return;
         }
 
-        HttpService httpService = new HttpServiceImpl();
-        try {
+        String url = task.getUrl();
+        if(StringUtils.isBlank(url)){
+            return;
+        }
 
+        HttpService httpService = new HttpServiceImpl();
+        CrawlerRequest request = new CrawlerRequest();
+        request.setUrl(url);
+        try {
+            CrawlerResponse response = httpService.doRequest(request);
+            if(response == null){
+                return;
+            }
+
+            String html = response.getResponse();
+            System.out.print(html);
         }catch (Exception e){
 
         }
-        System.out.print(task);
     }
 
     @Override

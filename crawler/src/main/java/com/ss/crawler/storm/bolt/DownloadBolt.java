@@ -6,7 +6,9 @@ import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Tuple;
 import com.ss.crawler.model.Task;
+import com.ss.crawler.service.HttpService;
 import com.ss.crawler.service.MqService;
+import com.ss.crawler.service.impl.HttpServiceImpl;
 import com.ss.crawler.service.impl.MqServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +20,6 @@ import java.util.Map;
  */
 @Service("downloadBolt")
 public class DownloadBolt implements IRichBolt {
-//
-//    @Autowired
-//    private MqService mqService;
-//
-//    public void setMqService(MqService mqService) {
-//        this.mqService = mqService;
-//    }
 
     @Override
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
@@ -34,6 +29,11 @@ public class DownloadBolt implements IRichBolt {
     @Override
     public void execute(Tuple tuple) {
         Task task = (Task)tuple.getValue(0);
+        if(task == null){
+            return;
+        }
+
+        HttpService httpService = new HttpServiceImpl();
         try {
 
         }catch (Exception e){

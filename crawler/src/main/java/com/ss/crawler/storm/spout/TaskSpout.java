@@ -47,8 +47,14 @@ public class TaskSpout  implements IRichSpout {
             return;
         }
         Task newTask = new Task();
-        newTask.setUrl("www.baidu.com");
+        newTask.setUrl("http://www.csdn.net/");
         this.collector.emit(new Values(newTask));
+
+        try {
+            Thread.sleep(5000l);
+        }catch (Exception e){
+
+        }
         completed = true;
     }
 

@@ -21,6 +21,8 @@
         <httpclient.version>4.3.3</httpclient.version>
         <log4j.version>2.0-rc1</log4j.version>
         <slf4j.version>1.7.7</slf4j.version>
+        <commons-lang3.version>3.3</commons-lang3.version>
+        <jchardet.version>1.0</jchardet.version>
     </properties>
 
     <dependencies>
@@ -94,6 +96,21 @@
             <artifactId>jsoup</artifactId>
             <version>${jsoup.version}</version>
         </dependency>
+
+        <!--commons-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <!--jchardet-->
+        <dependency>
+            <groupId>net.sourceforge.jchardet</groupId>
+            <artifactId>jchardet</artifactId>
+            <version>${jchardet.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

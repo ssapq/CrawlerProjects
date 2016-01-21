@@ -35,8 +35,7 @@ public class DownloadBolt implements IRichBolt {
     public void execute(Tuple tuple) {
         Task task = (Task)tuple.getValue(0);
         try {
-            MqService mqService = new MqServiceImpl();
-            mqService.subMessage();
+
         }catch (Exception e){
 
         }

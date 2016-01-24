@@ -44,14 +44,14 @@ public class TaskSpout  implements IRichSpout {
     @Override
     public void nextTuple() {
         if(completed) {
-            return;
+//            return;
         }
         Task newTask = new Task();
         newTask.setUrl("http://www.csdn.net/");
         this.collector.emit(new Values(newTask));
 
         try {
-            Thread.sleep(5000l);
+            Thread.sleep(30000l);
         }catch (Exception e){
 
         }

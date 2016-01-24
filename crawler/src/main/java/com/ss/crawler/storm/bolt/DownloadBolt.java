@@ -4,7 +4,9 @@ import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
+import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
+import backtype.storm.tuple.Values;
 import com.ss.crawler.model.CrawlerRequest;
 import com.ss.crawler.model.CrawlerResponse;
 import com.ss.crawler.model.Task;
@@ -21,9 +23,11 @@ import java.util.Map;
 @Service("downloadBolt")
 public class DownloadBolt implements IRichBolt {
 
+    private OutputCollector collector;
+
     @Override
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
-
+        this.collector = outputCollector;
     }
 
     @Override
@@ -48,9 +52,9 @@ public class DownloadBolt implements IRichBolt {
             }
 
             String html = response.getResponse();
-            System.out.print(html);
+            collector.emit(tuple, new Values(html));
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
@@ -61,7 +65,7 @@ public class DownloadBolt implements IRichBolt {
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer outputFieldsDeclarer) {
-
+        outputFieldsDeclarer.declare(new Fields("mainHtml"));
     }
 
     @Override

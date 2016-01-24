@@ -5,6 +5,7 @@ import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
 import com.ss.crawler.business.InitBusiness;
 import com.ss.crawler.storm.bolt.DownloadBolt;
+import com.ss.crawler.storm.bolt.UrlListExtractBolt;
 import com.ss.crawler.storm.spout.TaskSpout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class InitBusinessImpl implements InitBusiness {
     private DownloadBolt downloadBolt;
     @Autowired
     private TaskSpout taskSpout;
+    @Autowired
+    private UrlListExtractBolt urlListExtractBolt;
 
     public void setDownloadBolt(DownloadBolt downloadBolt) {
         this.downloadBolt = downloadBolt;
@@ -28,11 +31,16 @@ public class InitBusinessImpl implements InitBusiness {
         this.taskSpout = taskSpout;
     }
 
+    public void setUrlListExtractBolt(UrlListExtractBolt urlListExtractBolt) {
+        this.urlListExtractBolt = urlListExtractBolt;
+    }
+
     @Override
     public void initCrawler() throws Exception {
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout("taskSender", taskSpout);
         builder.setBolt("downloadWeb", downloadBolt).shuffleGrouping("taskSender");
+        builder.setBolt("urlListExtractBolt", urlListExtractBolt).shuffleGrouping("downloadWeb");
 
         Config conf = new Config();
         conf.setDebug(true);

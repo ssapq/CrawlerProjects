@@ -23,6 +23,7 @@
         <slf4j.version>1.7.7</slf4j.version>
         <commons-lang3.version>3.3</commons-lang3.version>
         <jchardet.version>1.0</jchardet.version>
+        <activemq.version>5.12.1</activemq.version>
     </properties>
 
     <dependencies>
@@ -109,6 +110,13 @@
             <groupId>net.sourceforge.jchardet</groupId>
             <artifactId>jchardet</artifactId>
             <version>${jchardet.version}</version>
+        </dependency>
+
+        <!--activemq-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>${activemq.version}</version>
         </dependency>
 
     </dependencies>

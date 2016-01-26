@@ -1,5 +1,8 @@
 package com.ss.crawler.service.impl;
 
+import com.ss.crawler.service.WebpageParserService;
+import com.ss.crawler.util.DateUtil;
+import com.ss.crawler.util.RegexUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -390,7 +393,7 @@ public class WebpageParserServiceImpl implements WebpageParserService {
             html = html.replace("&nbsp;", " ");
             html = RegexUtil.replaceAll(html, dest, src);
         }
-        String body = RegexUtil.getRegexResult(html,bodyRegex);
+        String body = RegexUtil.getRegexResult(html, bodyRegex);
         if(StringUtils.isBlank(body)){
             return "";
         }

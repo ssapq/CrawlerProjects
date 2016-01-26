@@ -13,6 +13,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.storm.netty.util.CharsetUtil;
+import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +23,7 @@ import java.io.InputStream;
  * Created by ss on 2016/1/21.
  * 提供HTTP请求服务
  */
+@Service("httpService")
 public class HttpServiceImpl implements HttpService {
     /**
      * 从网上下载HTML页面

@@ -8,6 +8,7 @@ import org.apache.oro.text.regex.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO:本类需要整理异常处理
 public class RegexUtil {
 
 	private static final Log LOG = LogFactory.getLog(RegexUtil.class);// LOG日志

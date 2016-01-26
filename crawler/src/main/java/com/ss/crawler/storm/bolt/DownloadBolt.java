@@ -12,9 +12,11 @@ import com.ss.crawler.model.CrawlerResponse;
 import com.ss.crawler.model.Task;
 import com.ss.crawler.service.HttpService;
 import com.ss.crawler.service.impl.HttpServiceImpl;
+import com.ss.crawler.util.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -24,10 +26,12 @@ import java.util.Map;
 public class DownloadBolt implements IRichBolt {
 
     private OutputCollector collector;
+    private HttpService httpService;
 
     @Override
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
         this.collector = outputCollector;
+        this.httpService = (HttpService)SpringUtil.getBean("httpService");
     }
 
     @Override
@@ -42,7 +46,6 @@ public class DownloadBolt implements IRichBolt {
             return;
         }
 
-        HttpService httpService = new HttpServiceImpl();
         CrawlerRequest request = new CrawlerRequest();
         request.setUrl(url);
         try {

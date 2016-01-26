@@ -24,6 +24,7 @@
         <commons-lang3.version>3.3</commons-lang3.version>
         <jchardet.version>1.0</jchardet.version>
         <activemq.version>5.12.1</activemq.version>
+        <oro.version>2.0.8</oro.version>
     </properties>
 
     <dependencies>
@@ -117,6 +118,13 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-all</artifactId>
             <version>${activemq.version}</version>
+        </dependency>
+
+        <!-- oro-->
+        <dependency>
+            <groupId>oro</groupId>
+            <artifactId>oro</artifactId>
+            <version>${oro.version}</version>
         </dependency>
 
     </dependencies>

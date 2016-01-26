@@ -23,9 +23,11 @@ import java.util.Map;
 @Service("urlListExtractBolt")
 public class UrlListExtractBolt  implements IRichBolt {
 
-    @Override
-    public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
+    private OutputCollector controller;
 
+    @Override
+    public void prepare(Map stormConf, TopologyContext context, OutputCollector outputCollector) {
+        this.controller = outputCollector;
     }
 
     @Override

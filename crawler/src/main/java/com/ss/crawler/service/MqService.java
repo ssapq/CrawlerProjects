@@ -5,9 +5,7 @@ package com.ss.crawler.service;
  */
 public interface MqService {
 
-    /**
-     *
-     * @throws Exception
-     */
-    public void subMessage() throws Exception;
+    public void sender() throws Exception;
+
+    public void receiver() throws Exception;
 }

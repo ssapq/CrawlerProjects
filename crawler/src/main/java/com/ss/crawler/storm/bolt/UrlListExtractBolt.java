@@ -6,6 +6,8 @@ import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
+import com.ss.crawler.service.MqService;
+import com.ss.crawler.util.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -60,6 +62,14 @@ public class UrlListExtractBolt  implements IRichBolt {
         }
 
         System.out.print(linkHrefList.size());
+        MqService mqService = (MqService)SpringUtil.getBean("mqService");
+
+        try {
+            mqService.sender();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
 
     }
 

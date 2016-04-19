@@ -7,6 +7,7 @@ import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import com.ss.crawler.service.MqService;
+import com.ss.crawler.service.MqSubscriptionService;
 import com.ss.crawler.util.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -70,7 +71,6 @@ public class UrlListExtractBolt  implements IRichBolt {
             e.printStackTrace();
         } finally {
         }
-
     }
 
     @Override

@@ -66,7 +66,7 @@ public class UrlListExtractBolt  implements IRichBolt {
         MqService mqService = (MqService)SpringUtil.getBean("mqService");
 
         try {
-            mqService.sender();
+            mqService.sendMessage("");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

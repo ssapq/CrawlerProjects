@@ -13,18 +13,4 @@ import javax.jms.TextMessage;
 @Service("mqSubscriptionService")
 public class MqSubscriptionServiceImpl implements MqSubscriptionService {
 
-    @Override
-    public void onMessage(Message message) {
-        if (message instanceof TextMessage) {
-            try {
-                System.out.println(((TextMessage) message).getText());
-            }
-            catch (JMSException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
-        else {
-            throw new IllegalArgumentException("Message must be of type TextMessage");
-        }
-    }
 }

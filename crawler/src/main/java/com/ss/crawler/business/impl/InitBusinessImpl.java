@@ -4,9 +4,11 @@ import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
 import com.ss.crawler.business.InitBusiness;
+import com.ss.crawler.business.TaskProducer;
 import com.ss.crawler.storm.bolt.DownloadBolt;
 import com.ss.crawler.storm.bolt.UrlListExtractBolt;
 import com.ss.crawler.storm.spout.TaskSpout;
+import com.ss.crawler.util.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,22 @@ public class InitBusinessImpl implements InitBusiness {
 
     @Override
     public void initCrawler() throws Exception {
+        this.initCrawlerV1_0();
+    }
+
+    /**
+     * 初始化第一版本的爬虫 此版本爬虫不基于Storm
+     * @return
+     * @throws Exception
+     */
+    private boolean initCrawlerV1_0() throws Exception{
+        TaskProducer taskProducer = (TaskProducer)SpringUtil.getBean("taskProducer");
+        taskProducer.run();
+        return false;
+    }
+
+    private boolean initCrawlerV2_0()throws Exception{
+
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout("taskSender", taskSpout);
         builder.setBolt("downloadWeb", downloadBolt).shuffleGrouping("taskSender");
@@ -47,6 +65,7 @@ public class InitBusinessImpl implements InitBusiness {
 
         LocalCluster cluster = new LocalCluster();
         cluster.submitTopology("Crawler-Topo", conf, builder.createTopology());
-//        cluster.shutdown();
+        cluster.shutdown();
+        return false;
     }
 }

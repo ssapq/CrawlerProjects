@@ -6,8 +6,5 @@ import javax.jms.MessageListener;
 /**
  * Created by ss on 2016/4/19.
  */
-public interface MqSubscriptionService extends MessageListener {
-
-    @Override
-    public void onMessage(Message message);
+public interface MqSubscriptionService {
 }

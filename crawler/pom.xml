@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
-    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+         xsi:schemaLocation="">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,17 +18,16 @@
         <slf4j.version>1.7.7</slf4j.version>
         <commons-lang3.version>3.3</commons-lang3.version>
         <jchardet.version>1.0</jchardet.version>
-        <activemq.version>5.12.1</activemq.version>
         <oro.version>2.0.8</oro.version>
     </properties>
 
     <dependencies>
         <!--Storm-->
-        <dependency>
-            <groupId>org.apache.storm</groupId>
-            <artifactId>storm-core</artifactId>
-            <version>${storm.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.storm</groupId>-->
+            <!--<artifactId>storm-core</artifactId>-->
+            <!--<version>${storm.version}</version>-->
+        <!--</dependency>-->
 
         <!--Spring-->
         <dependency>
@@ -111,13 +105,6 @@
             <groupId>net.sourceforge.jchardet</groupId>
             <artifactId>jchardet</artifactId>
             <version>${jchardet.version}</version>
-        </dependency>
-
-        <!--activemq-->
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-all</artifactId>
-            <version>${activemq.version}</version>
         </dependency>
 
         <!-- oro-->
